@@ -1,0 +1,25 @@
+service: serverless-go-service
+
+frameworkVersion: '^3'
+
+provider:
+  name: aws
+  architecture: arm64
+  deploymentMethod: direct
+  runtime: provided.al2
+  region: us-east-1
+
+plugins:
+  - serverless-go-plugin
+
+functions:
+  hello:
+    handler: ./functions/hello
+    events:
+      - httpApi: '*'
+
+
+custom:
+  go:
+    supportedRuntimes: ["provided.al2"]
+    buildProvidedRuntimeAsBootstrap: true
